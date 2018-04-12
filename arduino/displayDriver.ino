@@ -36,6 +36,12 @@ void setup(){
 void loop(){
     if(bluetooth.available()){
       Serial.print((char)bluetooth.read());  
+      oled.setFontType(0);
+      oled.setCursor(0,0);
       oled.print((char)bluetooth.read()); 
    }
+
+      oled.display();
+      oled.clear(PAGE);
+      delay(1000);
  }
