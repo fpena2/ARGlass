@@ -1,21 +1,42 @@
 import pytesseract
 import cv2
 from moviepy.editor import VideoFileClip
+import string
 
-def videoProcessing():
-    videoFrame = VideoFileClip('f2.mp4')
-    for aFrame in videoFrame.iter_frames():
+
+def getScreenData(socket=None):
+    videoFrame = VideoFileClip('f2.mp4')#.subclip(1,5)
+    flag = "--psm 6"
+    redValue_prev = "-1"
+    blueValue_prev = "-1"
+
+    for aFrame in videoFrame.iter_frames(fps = 4):
         aFrame = cv2.cvtColor(aFrame, cv2.COLOR_RGB2GRAY)
-       
-       """[yPixel: yPixel + height, xPixel: xPixel + width]"""
-        teamOneScore = aFrame[595:595 + 37, 431: 431 + 55]
-        teamTwoScore = aFrame[593: 593 + 43, 624: 624 + 51]
-        teamOne = aFrame[597: 597 + 32, 362: 362 + 70]
-        teamTwo = aFrame[593: 593 + 33, 547: 547 + 73]
 
-        print(pytesseract.image_to_string(teamTwoScore, config='-psm 6' ))
+        """[yPixel: yPixel + height, xPixel: xPixel + width]"""
+        bluescore_img = aFrame[595:595 + 37, 431: 431 + 55]
+        redscore_img = aFrame[593: 593 + 43, 624: 624 + 51]
+        blue_img = aFrame[597: 597 + 32, 362: 362 + 70]
+        red_img = aFrame[593: 593 + 33, 547: 547 + 73]
 
-    cv2.imshow("image", teamTwoScore)
-    # cv2.imwrite('messigray.png',aFrame)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+        # converting images to strings
+        blueValue = pytesseract.image_to_string(bluescore_img, config=flag)
+        blueName = pytesseract.image_to_string(blue_img, config=flag)
+
+        redValue = pytesseract.image_to_string(redscore_img, config=flag)
+        redName = pytesseract.image_to_string(red_img, config=flag)
+
+        try:
+            if(redName.isalpha() and redValue_prev != redValue and int(redValue_prev) <= int(redValue)):
+                print("{0} = {1}".format(redName, int(redValue)))
+                socket.send("{0} = {1}".format(redName, int(redValue)))
+                redValue_prev = redValue
+
+            if(blueName.isalpha() and blueValue_prev != blueValue and int(blueValue_prev) <= int(blueValue)):
+                print("{0} = {1}".format(blueName, int(blueValue)))
+                socket.send("{0} = {1}".format(blueName, int(blueValue)))
+                blueValue_prev = blueValue
+
+        except ValueError:
+            #print("bad value")
+            continue
