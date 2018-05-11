@@ -40,12 +40,12 @@ void setup(){
 void loop(){
     
     if(bluetooth.available()){
+      // Print results to serial
       Serial.print((char)bluetooth.read());
-     // oled.print((char)bluetooth.read()); 
       
       oled.setFontType(1);  // Set font to type 1
       oled.clear(PAGE);     // Clear the page
-      oled.setCursor(2, 0); // Set cursor to top-left
+      oled.setCursor(0, 0); // Set cursor to top-left
       
       // Print can be used to print a string to the screen:
       oled.print((String)bluetooth.readString());
