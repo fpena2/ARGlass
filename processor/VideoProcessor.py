@@ -26,7 +26,9 @@ def getScreenData(socket=None):
 
         redValue = pytesseract.image_to_string(redscore_img, config=flag)
         redName = pytesseract.image_to_string(red_img, config=flag)
-
+        
+        # Pytesseract can return false-positives
+        # This statement filters values that are not digits nor possible team names 
         try:
             if(redName.isalpha() and redValue_prev != redValue and int(redValue_prev) <= int(redValue)):
                 print("{0} = {1}".format(redName, int(redValue)))
@@ -39,5 +41,5 @@ def getScreenData(socket=None):
                 blueValue_prev = blueValue
 
         except ValueError:
-            #print("bad value")
+            #print("wrong value")
             continue
