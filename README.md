@@ -16,6 +16,5 @@ Micro-OLED Screen
 
 ## Demo
 <p align="center">
-  <img width="700" height="379" src="resources/glasses.png">
-  <img width="700" height="676" src="resources/display.png">
+  <img width="800" height="600" src="resources/display.png">
 </p>
