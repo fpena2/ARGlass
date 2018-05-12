@@ -9,10 +9,10 @@ RN-42 Bluetooth Module
 Micro-OLED Screen 
 
 ### Software 
-Python 3.5 or higher 
-Python Tesseract ( pip3 install pytesseract )
-Tesseract-ocr ( sudo apt install tesseract-ocr )
-Ubuntu or other Linux based operating system 
++ Python 3.5 or higher 
++ Python Tesseract ( pip3 install pytesseract )
++ Tesseract-ocr ( sudo apt install tesseract-ocr )
++ Ubuntu or other Linux based operating system 
 
 ## Demo
 <p align="center">
