@@ -5,15 +5,15 @@ The server program processes the sport video frame-by-frame, while looking for t
 
 ## Requirements 
 ### Hardware 
-+ Arduino microcontroller 
-+ RN-42 Bluetooth Module 
-+ Micro-OLED Screen 
++ Arduino microcontroller
++ [RN-42 Bluetooth Module](https://cdn.sparkfun.com/datasheets/Wireless/Bluetooth/RN42XV.pdf) 
++ [Micro-OLED Screen](https://www.sparkfun.com/products/13003) 
 
 ### Software 
-+ Python 3.5 or higher 
-+ Python Tesseract ( pip3 install pytesseract )
-+ Tesseract-ocr ( sudo apt install tesseract-ocr )
 + Ubuntu or other Linux based operating system 
++ Python 3.5 or higher 
++ Tesseract-ocr ( sudo apt install tesseract-ocr )
++ Python Tesseract ( pip3 install pytesseract )
 
 ## Demo
 <p align="center">
