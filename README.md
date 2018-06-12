@@ -17,5 +17,8 @@ The server program processes the sport video frame-by-frame, while looking for t
 
 ## Demo
 <p align="center">
+  <img width="800" height="600" src="resources/video_demo.png">
+</p>
+<p align="center">
   <img width="800" height="600" src="resources/display.png">
 </p>
